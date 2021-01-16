@@ -1,24 +1,24 @@
-# -*- coding: utf-8 -*-
-
 import collections
 import html
-import os
-import sys
 from typing import Union, List
 
 import bs4
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '.')))
-import decorators
+from .html_data_temp_utils import (
+    html_soupify_first_arg_string,
+    copy_first_arg,
+    stringify_first_arg,
+    request_first_arg_url,
+)
+
 
 Heading = collections.namedtuple('Heading', ['heading', 'children'])
 StringOrBeautifulSoupObject = Union[str, bs4.BeautifulSoup]
 ListOfBeautifulSoupTags = List[bs4.element.Tag]
 
 
-@decorators.map_first_arg
-@decorators.request_first_arg_url
-@decorators.html_soupify_first_arg_string
+@request_first_arg_url
+@html_soupify_first_arg_string
 def html_text(html_content: StringOrBeautifulSoupObject) -> str:
     html_content = html_remove_element(html_content, 'script')
     html_content = html_remove_element(html_content, 'style')
@@ -28,14 +28,12 @@ def html_text(html_content: StringOrBeautifulSoupObject) -> str:
     return text
 
 
-@decorators.map_first_arg
-@decorators.stringify_first_arg
+@stringify_first_arg
 def html_unescape(html_content: StringOrBeautifulSoupObject) -> str:
     return html.unescape(html_content)
 
 
-@decorators.map_first_arg
-@decorators.stringify_first_arg
+@stringify_first_arg
 def html_escape(html_content: StringOrBeautifulSoupObject) -> str:
     return html.escape(html_content)
 
@@ -43,9 +41,8 @@ def html_escape(html_content: StringOrBeautifulSoupObject) -> str:
 # todo: write a function similar to the json_search function which takes html and the desired content and returns the html class (or optionally, xid or css class) for the elements containing that content
 
 
-@decorators.map_first_arg
-@decorators.request_first_arg_url
-@decorators.stringify_first_arg
+@request_first_arg_url
+@stringify_first_arg
 def html_to_markdown(html_content: StringOrBeautifulSoupObject, **kwargs) -> str:
     """Convert the html string to markdown."""
     import html2text
@@ -54,34 +51,30 @@ def html_to_markdown(html_content: StringOrBeautifulSoupObject, **kwargs) -> str
     return markdown_creator.handle(html_content)
 
 
-@decorators.map_first_arg
-@decorators.request_first_arg_url
-@decorators.html_soupify_first_arg_string
+@request_first_arg_url
+@html_soupify_first_arg_string
 def html_find_comments(html_content: StringOrBeautifulSoupObject) -> str:
     """Get a list of all of the comments in the html strings."""
     # credit: https://stackoverflow.com/questions/33138937/how-to-find-all-comments-with-beautiful-soup
     return html_content.find_all(string=lambda text: isinstance(text, bs4.Comment))
 
 
-@decorators.map_first_arg
-@decorators.request_first_arg_url
+@request_first_arg_url
 def html_soupify(html_string: str, parser: str = 'html.parser') -> bs4.BeautifulSoup:
     """Return an instance of beautifulsoup with the html."""
     return bs4.BeautifulSoup(html_string, parser)
 
 
-@decorators.map_first_arg
-@decorators.request_first_arg_url
-@decorators.html_soupify_first_arg_string
+@request_first_arg_url
+@html_soupify_first_arg_string
 def html_remove_tags(html_content: StringOrBeautifulSoupObject) -> bs4.BeautifulSoup:
     text = ' '.join(html_content.findAll(text=True))
     return text
 
 
-@decorators.map_first_arg
-@decorators.request_first_arg_url
-@decorators.html_soupify_first_arg_string
-@decorators.copy_first_arg
+@request_first_arg_url
+@html_soupify_first_arg_string
+@copy_first_arg
 def html_remove_element(html_content: StringOrBeautifulSoupObject, element_tag: str) -> bs4.BeautifulSoup:
     """."""
     [s.extract() for s in html_content(element_tag)]
@@ -97,9 +90,8 @@ def html_remove_element(html_content: StringOrBeautifulSoupObject, element_tag: 
 #     return elements
 
 
-@decorators.map_first_arg
-@decorators.request_first_arg_url
-@decorators.html_soupify_first_arg_string
+@request_first_arg_url
+@html_soupify_first_arg_string
 def html_find_css_path(html_content: StringOrBeautifulSoupObject, css_path: str) -> ListOfBeautifulSoupTags:
     """Find the given css_path in the html_content."""
     # TODO: make sure this css path is working: soup.select('#emailrecentlist > a:nth-child(1)') on http://spam-report.email
@@ -108,9 +100,8 @@ def html_find_css_path(html_content: StringOrBeautifulSoupObject, css_path: str)
     return elements
 
 
-@decorators.map_first_arg
-@decorators.request_first_arg_url
-@decorators.html_soupify_first_arg_string
+@request_first_arg_url
+@html_soupify_first_arg_string
 def html_elements_with_class(
     html_content: StringOrBeautifulSoupObject, html_element_class: str
 ) -> ListOfBeautifulSoupTags:
@@ -118,25 +109,22 @@ def html_elements_with_class(
     return html_content.findAll(attrs={'class': html_element_class})
 
 
-@decorators.map_first_arg
-@decorators.request_first_arg_url
-@decorators.html_soupify_first_arg_string
+@request_first_arg_url
+@html_soupify_first_arg_string
 def html_elements_with_id(html_content: StringOrBeautifulSoupObject, html_element_id: str) -> ListOfBeautifulSoupTags:
     """Find all elements with the given html_element_id from the html_content."""
     return html_content.findAll(attrs={'id': html_element_id})
 
 
-@decorators.map_first_arg
-@decorators.request_first_arg_url
-@decorators.html_soupify_first_arg_string
+@request_first_arg_url
+@html_soupify_first_arg_string
 def html_elements_with_tag(html_content: StringOrBeautifulSoupObject, tag: str) -> ListOfBeautifulSoupTags:
     """."""
     return html_content.findAll(tag)
 
 
-@decorators.map_first_arg
-@decorators.request_first_arg_url
-@decorators.html_soupify_first_arg_string
+@request_first_arg_url
+@html_soupify_first_arg_string
 def html_headings_table_of_contents(html_content: StringOrBeautifulSoupObject) -> ListOfBeautifulSoupTags:
     data = []
     headings = html_headings(html_content)
@@ -163,9 +151,8 @@ def _html_headings_toc(heading_named_tuples: ListOfBeautifulSoupTags, indentatio
     return s
 
 
-@decorators.map_first_arg
-@decorators.request_first_arg_url
-@decorators.html_soupify_first_arg_string
+@request_first_arg_url
+@html_soupify_first_arg_string
 def html_headings_table_of_contents_string(
     html_content: StringOrBeautifulSoupObject, *, indentation: str = '  '
 ) -> str:
@@ -174,9 +161,8 @@ def html_headings_table_of_contents_string(
     return s.rstrip()
 
 
-@decorators.map_first_arg
-@decorators.request_first_arg_url
-@decorators.html_soupify_first_arg_string
+@request_first_arg_url
+@html_soupify_first_arg_string
 def html_headings(html_content: StringOrBeautifulSoupObject) -> ListOfBeautifulSoupTags:
     heading_tags = ('h1', 'h2', 'h3', 'h4', 'h5', 'h6')
     headings = html_elements_with_tag(html_content, heading_tags)
@@ -185,9 +171,8 @@ def html_headings(html_content: StringOrBeautifulSoupObject) -> ListOfBeautifulS
 
 
 # TODO: add a return type to this function (for json)
-@decorators.map_first_arg
-@decorators.request_first_arg_url
-@decorators.stringify_first_arg
+@request_first_arg_url
+@stringify_first_arg
 def html_to_json(html_content: StringOrBeautifulSoupObject, *, convert_only_tables: bool = False):
     """Convert the html to json using https://gitlab.com/fhightower/html-to-json."""
     import html_to_json

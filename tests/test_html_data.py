@@ -1,9 +1,7 @@
-# -*- coding: utf-8 -*-
-
 import bs4
 import pytest
 
-from .html_data import (
+from democritus_html import (
     html_to_markdown,
     html_unescape,
     html_escape,
@@ -124,23 +122,16 @@ def test_html_to_markdown_1():
     # make sure kwargs are passed into the html_2_text module properly
     assert html_to_markdown("<p>Test</p>", bodywidth=0) == 'Test\n'
     assert html_to_markdown("<h1>Bingo</h1><p>Test</p>") == '# Bingo\n\nTest\n\n'
-    assert html_to_markdown(["<p>Test</p>", "<h1>Bingo</h1><p>Test</p>"], bodywidth=0) == [
-        'Test\n',
-        '# Bingo\n\nTest\n',
-    ]
-    assert html_to_markdown(["<p>Test</p>", "<h1>Bingo</h1><p>Test</p>"]) == ['Test\n\n', '# Bingo\n\nTest\n\n']
 
 
 def test_html_unescape():
     assert html_unescape('&lt;test&gt;') == '<test>'
     assert html_unescape('my cat &amp; dog') == 'my cat & dog'
-    assert html_unescape(['&lt;test&gt;', 'my cat &amp; dog']) == ['<test>', 'my cat & dog']
 
 
 def test_html_escape():
     assert html_escape('<test>') == '&lt;test&gt;'
     assert html_escape('my cat & dog') == 'my cat &amp; dog'
-    assert html_escape(['<test>', 'my cat & dog']) == ['&lt;test&gt;', 'my cat &amp; dog']
 
 
 def test_html_text_1():
