@@ -1,7 +1,6 @@
 beautifulsoup4
-democritus-networking @ git+https://github.com/democritus-project/democritus-networking.git#egg=democritus-networking
-democritus-networking @ git+https://github.com/democritus-project/democritus-networking.git#egg=democritus-networking
-democritus-urls @ git+https://github.com/democritus-project/democritus-urls.git#egg=democritus-urls
+democritus-networking
+democritus-urls
 html2text
 html_to_json @ git+https://gitlab.com/fhightower/html-to-json.git#egg=html_to_json
 importlib-metadata; python_version < '3.8'
