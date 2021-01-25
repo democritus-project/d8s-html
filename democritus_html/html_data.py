@@ -1,4 +1,5 @@
 import collections
+import functools
 import html
 from typing import Union, List
 
@@ -181,3 +182,20 @@ def html_to_json(html_content: StringOrBeautifulSoupObject, *, convert_only_tabl
         return html_to_json.convert_tables(html_content)
     else:
         return html_to_json.convert(html_content)
+
+
+def html_soupify_first_arg_string(func):
+    """Return a Beautiful Soup instance of the first argument (if it is a string)."""
+
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        first_arg = args[0]
+        other_args = args[1:]
+
+        if isinstance(first_arg, str):
+            first_arg_soup = html_soupify(first_arg)
+            return func(first_arg_soup, *other_args, **kwargs)
+        else:
+            return func(*args, **kwargs)
+
+    return wrapper

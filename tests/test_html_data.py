@@ -13,6 +13,7 @@ from democritus_html import (
     html_text,
     html_soupify,
     html_remove_element,
+    html_soupify_first_arg_string,
 )
 
 
@@ -186,3 +187,17 @@ def test_html_to_json():
             },
         ]
     ]
+
+
+@html_soupify_first_arg_string
+def html_soupify_first_arg_string_test_func_a(a):
+    """."""
+    return a
+
+
+def test_html_soupify_first_arg_string_1():
+    result = html_soupify_first_arg_string_test_func_a('<p>hello</p>')
+    assert isinstance(result, bs4.BeautifulSoup)
+
+    result = html_soupify_first_arg_string_test_func_a(1)
+    assert isinstance(result, int)
