@@ -1,6 +1,6 @@
 beautifulsoup4
 democritus-networking
 democritus-urls
+html-to-json
 html2text
-html_to_json @ git+https://gitlab.com/fhightower/html-to-json.git#egg=html_to_json
 importlib-metadata; python_version < '3.8'
