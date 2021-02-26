@@ -13,6 +13,8 @@ jobs:
     - name: Close stale issues
       uses: actions/stale@v3.0.15
       with:
+        days-before-issue-stale: 2
+        days-before-issue-close: 1
         # The message to post on the issue when tagging it. If none provided, will not mark issues stale.
         stale-issue-message: "This issue has been around for a long time and will be closed in a week. If you want to keep this open, remove the 'stale' label or comment on this issue."
         # The message to post on the issue when closing it. If none provided, will not comment when closing an issue.
