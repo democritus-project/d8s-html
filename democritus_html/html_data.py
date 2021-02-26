@@ -171,7 +171,6 @@ def html_headings(html_content: StringOrBeautifulSoupObject) -> ListOfBeautifulS
     return headings
 
 
-# TODO: add a return type to this function (for json)
 @request_first_arg_url
 @stringify_first_arg
 def html_to_json(html_content: StringOrBeautifulSoupObject, *, convert_only_tables: bool = False):

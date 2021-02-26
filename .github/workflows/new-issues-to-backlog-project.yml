@@ -1,6 +1,8 @@
 name: Add new GitHub issue to "Backlog" Project
 
-on: [issues]
+on:
+  issues:
+    types: [opened]
 
 jobs:
   add-new-issues-to-project-column:
