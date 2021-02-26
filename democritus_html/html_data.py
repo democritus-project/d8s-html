@@ -39,9 +39,6 @@ def html_escape(html_content: StringOrBeautifulSoupObject) -> str:
     return html.escape(html_content)
 
 
-# todo: write a function similar to the json_search function which takes html and the desired content and returns the html class (or optionally, xid or css class) for the elements containing that content
-
-
 @request_first_arg_url
 @stringify_first_arg
 def html_to_markdown(html_content: StringOrBeautifulSoupObject, **kwargs) -> str:
