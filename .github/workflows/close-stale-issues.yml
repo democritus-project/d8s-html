@@ -13,6 +13,7 @@ jobs:
     - name: Close stale issues
       uses: actions/stale@v3.0.15
       with:
+        repo-token: ${{ secrets.DEMOCRITUS_ISSUE_TO_BACKLOG_TOKEN }}
         days-before-issue-stale: 2
         days-before-issue-close: 1
         # The message to post on the issue when tagging it. If none provided, will not mark issues stale.
