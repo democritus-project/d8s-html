@@ -1,7 +1,7 @@
 import bs4
 import pytest
 
-from democritus_html import (
+from d8s_html import (
     html_to_markdown,
     html_unescape,
     html_escape,

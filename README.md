@@ -1,8 +1,8 @@
 # Democritus Html
 
-[![PyPI](https://img.shields.io/pypi/v/democritus-html.svg)](https://pypi.python.org/pypi/democritus-html)
-[![Build Status](https://travis-ci.com/democritus-project/democritus-html.svg?branch=main)](https://travis-ci.com/democritus-project/democritus-html)
-[![codecov](https://codecov.io/gh/democritus-project/democritus-html/branch/main/graph/badge.svg?token=V0WOIXRGMM)](https://codecov.io/gh/democritus-project/democritus-html)
+[![PyPI](https://img.shields.io/pypi/v/d8s-html.svg)](https://pypi.python.org/pypi/d8s-html)
+[![Build Status](https://travis-ci.com/democritus-project/d8s-html.svg?branch=main)](https://travis-ci.com/democritus-project/d8s-html)
+[![codecov](https://codecov.io/gh/democritus-project/d8s-html/branch/main/graph/badge.svg?token=V0WOIXRGMM)](https://codecov.io/gh/democritus-project/d8s-html)
 
 Democritus functions<sup>[1]</sup> for working with HTML.
 
