@@ -25,8 +25,8 @@ def request_first_arg_url(func):
 
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
-        from democritus_urls import is_url
-        from democritus_networking import get
+        from d8s_urls import is_url
+        from d8s_networking import get
 
         possible_url_arg = args[0]
         other_args = args[1:]
