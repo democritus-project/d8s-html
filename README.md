@@ -14,9 +14,80 @@ Democritus functions<sup>[1]</sup> for working with HTML.
 
 We use `d8s` as an abbreviation for `democritus` (you can read more about this [here](https://github.com/democritus-project/roadmap#what-is-d8s)).
 
-## Usage
+## Functions
 
-Coming soon...
+  - ```python
+    def html_text(html_content: StringOrBeautifulSoupObject) -> str:
+        """."""
+    ```
+  - ```python
+    def html_unescape(html_content: StringOrBeautifulSoupObject) -> str:
+        """."""
+    ```
+  - ```python
+    def html_escape(html_content: StringOrBeautifulSoupObject) -> str:
+        """."""
+    ```
+  - ```python
+    def html_to_markdown(html_content: StringOrBeautifulSoupObject, **kwargs) -> str:
+        """Convert the html string to markdown."""
+    ```
+  - ```python
+    def html_find_comments(html_content: StringOrBeautifulSoupObject) -> str:
+        """Get a list of all of the comments in the html strings."""
+    ```
+  - ```python
+    def html_soupify(html_string: str, parser: str = 'html.parser') -> bs4.BeautifulSoup:
+        """Return an instance of beautifulsoup with the html."""
+    ```
+  - ```python
+    def html_remove_tags(html_content: StringOrBeautifulSoupObject) -> bs4.BeautifulSoup:
+        """."""
+    ```
+  - ```python
+    def html_remove_element(html_content: StringOrBeautifulSoupObject, element_tag: str) -> bs4.BeautifulSoup:
+        """."""
+    ```
+  - ```python
+    def html_find_css_path(html_content: StringOrBeautifulSoupObject, css_path: str) -> ListOfBeautifulSoupTags:
+        """Find the given css_path in the html_content."""
+    ```
+  - ```python
+    def html_elements_with_class(
+        html_content: StringOrBeautifulSoupObject, html_element_class: str
+    ) -> ListOfBeautifulSoupTags:
+        """Find all elements with the given class from the html string."""
+    ```
+  - ```python
+    def html_elements_with_id(html_content: StringOrBeautifulSoupObject, html_element_id: str) -> ListOfBeautifulSoupTags:
+        """Find all elements with the given html_element_id from the html_content."""
+    ```
+  - ```python
+    def html_elements_with_tag(html_content: StringOrBeautifulSoupObject, tag: str) -> ListOfBeautifulSoupTags:
+        """."""
+    ```
+  - ```python
+    def html_headings_table_of_contents(html_content: StringOrBeautifulSoupObject) -> ListOfBeautifulSoupTags:
+        """."""
+    ```
+  - ```python
+    def html_headings_table_of_contents_string(
+        html_content: StringOrBeautifulSoupObject, *, indentation: str = '  '
+    ) -> str:
+        """."""
+    ```
+  - ```python
+    def html_headings(html_content: StringOrBeautifulSoupObject) -> ListOfBeautifulSoupTags:
+        """."""
+    ```
+  - ```python
+    def html_to_json(html_content: StringOrBeautifulSoupObject, *, convert_only_tables: bool = False):
+        """Convert the html to json using https://gitlab.com/fhightower/html-to-json."""
+    ```
+  - ```python
+    def html_soupify_first_arg_string(func):
+        """Return a Beautiful Soup instance of the first argument (if it is a string)."""
+    ```
 
 ## Development
 
