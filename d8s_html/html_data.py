@@ -23,7 +23,7 @@ ListOfBeautifulSoupTags = List[bs4.element.Tag]
 def html_text(html_content: StringOrBeautifulSoupObject) -> str:
     html_content = html_remove_element(html_content, 'script')
     html_content = html_remove_element(html_content, 'style')
-    html_content = html_remove_element(html_content, 'header')
+    html_content = html_remove_element(html_content, 'head')
 
     text = ' '.join(html_content.findAll(text=True))
     return text
